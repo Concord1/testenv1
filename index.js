@@ -7,13 +7,13 @@ const server = http.createServer((req, res) => {
 
   const templatePath = 'template.ejs';
   const name = 'John'; // Replace with the desired value
-
+  const PORTO = process.env.PORT
   fs.readFile(templatePath, 'utf8', (err, template) => {
     if (err) {
       console.error(err);
       res.end('<h1>Error reading template file</h1>');
     } else {
-      const renderedHtml = ejs.render(template, { name });
+      const renderedHtml = ejs.render(template, { PORTO });
       res.end(renderedHtml);
     }
   });
