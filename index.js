@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
       console.error(err);
       res.end('<h1>Error reading template file</h1>');
     } else {
-      const renderedHtml = ejs.render(template, { PORTO });
+      const renderedHtml = ejs.render(template, { process.env.PORT });
       res.end(renderedHtml);
     }
   });
