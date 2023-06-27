@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Accessing Environment Variable</title>
-</head>
-<body>
-  <script>
-    // Access the environment variable directly in a JavaScript variable
-    const myVariable = '<%= process.env.PORT %>';
-    console.log(myVariable);
+const http = require('http');
+const fs = require('fs');
+const ejs = require('ejs');
 
-    // Alternatively, define the environment variable in the script tag
-    <% const myVariable = process.env.PORT %>
-    console.log('<%= myVariable %>');
-  </script>
-</body>
-</html>
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+
+  const template = fs.readFileSync('index.ejs', 'utf8');
+  const port = process.env.PORT || 3000;
+  const renderedHtml = ejs.render(template, { port });
+
+  res.end(renderedHtml);
+});
+
+const PORT = 3000;
+
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
