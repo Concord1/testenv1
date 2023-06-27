@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Accessing Environment Variable</title>
+    <title>Access Secret File Example</title>
+    <script>
+        fetch('/etc/secrets/test.txt')
+            .then(response => response.text())
+            .then(content => {
+                console.log('File contents:', content);
+                // Do something with the file contents
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
 </head>
 <body>
-  <script>
-    const myVariable = <%= port %>;
-    console.log(myVariable);
-  </script>
+    <h1>Access Secret File Example</h1>
 </body>
 </html>
