@@ -1,26 +1,22 @@
 const http = require('http');
 const fs = require('fs');
+const ejs = require('ejs');
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
 
-  const fileName = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        const PORT = process.env.PORT;
-        console.log(PORT);
-    </script>
-</head>
-<body>
-    
-</body>
-</html>`;
+  const templatePath = 'template.ejs';
+  const name = 'John'; // Replace with the desired value
 
-    res.end(html);
+  fs.readFile(templatePath, 'utf8', (err, template) => {
+    if (err) {
+      console.error(err);
+      res.end('<h1>Error reading template file</h1>');
+    } else {
+      const renderedHtml = ejs.render(template, { name });
+      res.end(renderedHtml);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 3000;
