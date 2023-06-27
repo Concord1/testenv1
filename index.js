@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
     </body>
     </html>
   `;
-  const html = 'main.html';
+  
 
   res.end(html);
 });
