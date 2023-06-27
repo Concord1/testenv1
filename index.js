@@ -1,28 +1,17 @@
-const http = require('http');
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accessing Environment Variable</title>
+</head>
+<body>
+  <script>
+    // Access the environment variable directly in a JavaScript variable
+    const myVariable = '<%= process.env.PORT %>';
+    console.log(myVariable);
 
-  const html = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <script>
-            const PORT = process.env.PORT;
-            console.log(PORT);
-        </script>
-    </head>
-    <body>
-        
-    </body>
-    </html>
-  `;
-
-  res.end(html);
-});
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    // Alternatively, define the environment variable in the script tag
+    <% const myVariable = process.env.PORT %>
+    console.log('<%= myVariable %>');
+  </script>
+</body>
+</html>
