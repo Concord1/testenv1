@@ -4,16 +4,21 @@ const fs = require('fs');
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
 
-  const fileName = 'main.html';
-
-  try {
-    const html = fs.readFileSync(fileName, 'utf8');
-    res.end(html);
-  } catch (err) {
-    console.error(err);
-    res.end('<h1>Error reading file</h1>');
-  }
-});
+  const fileName = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const PORT = process.env.PORT;
+        console.log(PORT);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>`
 
 const PORT = process.env.PORT || 3000;
 
