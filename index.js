@@ -3,16 +3,15 @@ const http = require('http');
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
 
-  const html = 'main.html';
+  const fileName = 'main.html';
 
-    fs.readFile(html, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.end('<h1>Error reading file</h1>');
-    } else {
-      res.end(data);
-    }
-  });
+  try {
+    const html = fs.readFileSync(fileName, 'utf8');
+    res.end(html);
+  } catch (err) {
+    console.error(err);
+    res.end('<h1>Error reading file</h1>');
+  }
 });
 
 const PORT = process.env.PORT || 3000;
