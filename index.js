@@ -18,7 +18,10 @@ const server = http.createServer((req, res) => {
 <body>
     
 </body>
-</html>`
+</html>`;
+
+    res.end(html);
+});
 
 const PORT = process.env.PORT || 3000;
 
