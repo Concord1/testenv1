@@ -5,7 +5,7 @@ const server = http.createServer((req, res) => {
 
   const html = 'main.html';
 
-    fs.readFile(fileName, 'utf8', (err, data) => {
+    fs.readFile(html, 'utf8', (err, data) => {
     if (err) {
       console.error(err);
       res.end('<h1>Error reading file</h1>');
