@@ -1,21 +1,14 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const path = require('path');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-
+app.get('/', (req, res) => {
   const fileName = 'main.html';
-
-  try {
-    const html = fs.readFileSync(fileName, 'utf8');
-    res.end(html);
-  } catch (err) {
-    console.error(err);
-    res.end('<h1>Error reading file</h1>');
-  }
+  res.sendFile(path.resolve(fileName));
 });
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
